@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0609TXELY1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0609TXELY1');
+</script>
+    {% load static %}
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="be2ab659-68b0-414c-bb4e-ae9412ec2c8c" type="text/javascript" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writers & Poets Platform</title>
+    <link rel="stylesheet" href="{% static 'css/second_style_post_app.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-left">
+            <!-- Added checkmarks to navigation buttons -->
+            <button class="nav-btn">✓ Your Account</button>
+            <button class="nav-btn">✓ Events & Projects</button>
+            <button class="nav-btn">✓ Main Page</button>
+            <button class="nav-btn">✓ Talk to us</button>
+        </nav>
+        
+        <div class="search-container">
+            <!-- Updated search placeholder and styling -->
+            <input type="text" class="search-input" placeholder="Search writers and poets...">
+            <div class="search-icon">🔍</div>
+        </div>
+        
+        <nav class="nav-right">
+            <!-- Added checkmarks to navigation buttons -->
+            <button class="nav-btn">✓ Posts</button>
+            <button class="nav-btn">✓ Archive</button>
+            <button class="nav-btn">✓ Books</button>
+            <button class="nav-btn">✓ Writers & Poets</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="cards-grid">
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Poet</span>
+                </div>
+                <div class="profile-image">
+                    <img src="{% static 'images/first.png' %}" alt="Lily Borny">
+                </div>
+                <h3 class="profile-name lily">Lily Borny</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <!-- Updated read more button styling to match name colors -->
+                <button class="read-more-btn lily-btn">read more ></button>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Writer</span>
+                </div>
+                <div class="profile-image">
+                    <img src="{% static 'images/second.png' %}" alt="Muharram">
+                </div>
+                <h3 class="profile-name muharram">Muharram</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <button class="read-more-btn muharram-btn">read more ></button>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Poet</span>
+                </div>
+                <div class="profile-image">
+                    <img src=" {% static 'images/third.png' %}" alt="Sofia">
+                </div>
+                <h3 class="profile-name sofia">Sofia</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <button class="read-more-btn sofia-btn">read more ></button>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Writer</span>
+                </div>
+                <div class="profile-image">
+                    <img src=" {% static 'images/fourth.png' %}" alt="Maria Lauras">
+                </div>
+                <h3 class="profile-name maria">Maria Lauras</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <button class="read-more-btn maria-btn">read more ></button>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Poet</span>
+                </div>
+                <div class="profile-image">
+                    <img src="{% static 'images/fifth.png' %}" alt="Veronika Neva">
+                </div>
+                <h3 class="profile-name veronika">Veronika Neva</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <button class="read-more-btn veronika-btn">read more ></button>
+            </div>
+
+            <div class="profile-card">
+                <div class="card-header">
+                    <span class="role-tag">Writer</span>
+                </div>
+                <div class="profile-image">
+                    <img src="{% static 'images/sixth.png' %}" alt="Kosem Sultana">
+                </div>
+                <h3 class="profile-name kosem">Kosem Sultana</h3>
+                <p class="profile-quote">Life is better than bad memories</p>
+                <button class="read-more-btn kosem-btn">read more ></button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

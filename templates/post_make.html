@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aykiz — Dashboard</title>
+
+  <!-- Handwritten-ish font similar to your Figma -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/post_make.css' %}">
+</head>
+<body>
+  <!-- Top header / navbar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav-left">
+        <button class="nav-pill">Your Account</button>
+        <button class="nav-pill">Writers &amp; Poets</button>
+        <button class="nav-pill">Events</button>
+        <button class="nav-pill">Books</button>
+      </nav>
+
+      <div class="search-wrap">
+        <input class="search" placeholder="Search" />
+      </div>
+
+      <nav class="nav-right">
+        <button class="nav-pill">Posts</button>
+        <button class="nav-pill">Projects</button>
+        <button class="nav-pill">What Happened</button>
+        <button class="nav-pill">Main Page</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main framed container -->
+  <main class="frame">
+    <div class="frame-inner">
+      <!-- left column: profile -->
+      <aside class="col-left">
+        <div class="profile">
+          <img class="profile-img" src="{% static 'images/profile.png' %}" alt="Aykiz">
+          <div class="profile-name">Aykiz</div>
+        </div>
+      </aside>
+
+      <!-- center column: form -->
+      <section class="col-center">
+        <div class="welcome-pill">Welcome Aykiz</div>
+
+        <!-- title row: input + post button -->
+        <div class="title-row" style="padding-left:80px;">
+          <input class="title-input" placeholder="Put title here" />
+          <button class="post-small" type="button" style="margin-left:20px;">Post</button>
+        </div>
+
+        <!-- big content box with leaf icon -->
+        <div class="content-wrap">
+          <!-- leaf svg to emulate the icon in your Figma -->
+          <svg class="leaf-icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
+            <path fill="none" stroke="#2f7a63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+              d="M2 20c4-6 10-10 20-12-2 10-8 14-20 12z" />
+          </svg>
+
+          <textarea class="content-box" placeholder="Type content here"></textarea>
+        </div>
+
+        <!-- action row (post left + submit right) -->
+        <div class="action-row">
+          <button class="post-small">Post</button>
+          <div class="spacer"></div>
+          <button class="submit-btn">Connect us</button>
+        </div>
+      </section>
+
+      <!-- right column: contact -->
+      <aside class="col-right">
+        <div class="contact">
+          <h3>Contact</h3>
+          <p class="contact-phone">+998936578178</p>
+          <p>Address</p>
+          <p>email</p>
+          <p>postcode</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

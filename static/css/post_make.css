@@ -1,0 +1,240 @@
+:root{
+  --bg: #6c9b7f;             /* page background (main green) */
+  --panel: #dff6e6;          /* light mint fill inside boxes */
+  --stroke: #234d39;         /* dark border stroke (softer) */
+  --pill: #e9f8ea;           /* nav pills bg */
+  --muted-text: #1f4f3f;
+  --hand: "Patrick Hand", "Segoe UI", "Inter", system-ui, sans-serif;
+}
+
+/* reset / base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--muted-text);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Top header */
+.topbar{
+  padding: 14px 18px;
+  background: #7fa98e;   /* softer green header closer to original */
+}
+.topbar-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+.nav-left, .nav-right {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.nav-pill{
+  background: var(--pill);
+  border-radius: 20px;
+  padding:8px 14px;
+  border: 2px solid var(--stroke);
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+}
+
+/* central search */
+.search-wrap{flex:1; display:flex; justify-content:center}
+.search{
+  width:58%;
+  max-width:520px;
+  height:36px;
+  border-radius:20px;
+  padding:8px 16px;
+  border:2px solid var(--stroke);
+  outline:none;
+  background: #f7fff8;
+  font-size:15px;
+}
+
+/* main container (no big border) */
+.frame{
+  max-width: 1180px;
+  margin:24px auto;
+  padding:24px;
+}
+
+/* grid columns: left / center / right */
+.frame-inner{
+  display:grid;
+  grid-template-columns: 180px 1fr 220px;
+  gap:20px;
+  align-items:start;
+  min-height:520px;
+}
+
+/* Left column */
+.col-left{padding-top:6px}
+.profile{display:flex; flex-direction:column; align-items:center; gap:14px}
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--stroke);
+}
+.profile-name{
+  background:var(--panel);
+  border:2px solid var(--stroke);
+  color:var(--muted-text);
+  padding:6px 16px;
+  border-radius:28px;
+  font-weight:700;
+  text-align:center;
+  font-family: var(--hand);
+}
+
+/* Center column (form) */
+.col-center{padding-top:6px}
+
+/* Welcome pill */
+.welcome-pill{
+  width:70%;
+  margin:12px auto 18px auto;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  background: var(--panel);
+  border-radius:30px;
+  font-weight:700;
+  border:2px solid var(--stroke);
+  font-family: var(--hand);
+  font-size:18px;
+}
+
+/* Title row: input only */
+.title-row{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+.title-input{
+  width:70%;
+  height:44px;
+  border-radius:30px;
+  padding:10px 18px;
+  background: var(--panel);
+  border:2px solid var(--stroke);
+  font-size:16px;
+  outline:none;
+}
+
+/* content area */
+.content-wrap{
+  margin:28px auto 0;
+  width:92%;
+  position:relative;
+}
+.leaf-icon{
+  position:absolute;
+  left:18px;
+  top:18px;
+  opacity:0.9;
+}
+.content-box{
+  width:100%;
+  height:280px;
+  border-radius:28px;
+  padding:48px 24px 24px 72px; /* leave room for leaf icon */
+  background: var(--panel);
+  border:2px solid var(--stroke);
+  resize:none;
+  font-size:15px;
+  color: var(--muted-text);
+  line-height:1.6;
+  font-family: Inter, system-ui, -apple-system;
+}
+
+/* action row */
+.action-row{
+  width:92%;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.post-small{
+  background:var(--panel);
+  border:2px solid var(--stroke);
+  height:38px;
+  padding:6px 14px;
+  border-radius:20px;
+  font-weight:700;
+  cursor:pointer;
+}
+.spacer{flex:1}
+.submit-btn{
+  min-width:130px;
+  height:42px;
+  border-radius:24px;
+  background: var(--pill);
+  border:2px solid var(--stroke);
+  font-weight:700;
+  cursor:pointer;
+  font-family: var(--hand);
+}
+
+/* Right column (contact) */
+.col-right{padding-top:6px}
+.contact{
+  text-align:left;
+  font-style:italic;
+  color:var(--muted-text);
+  margin-top:6px;
+}
+.contact h3{
+  margin:6px 0 8px 0;
+  font-family: var(--hand);
+  font-size:18px;
+  color: #234d39;
+}
+.contact p{margin:6px 0}
+
+/* Smooth transition for all interactive elements */
+button,
+input,
+textarea {
+  transition: all 0.25s ease-in-out;
+}
+
+/* Buttons: hover effect */
+button:hover {
+  background-color: #2f7a63;   /* darker green */
+  color: #fff;                 /* text contrast */
+  transform: translateY(-2px); /* subtle lift */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Inputs: glow on focus */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2f7a63;
+  box-shadow: 0 0 6px rgba(47,122,99,0.6);
+  transform: scale(1.01);
+}
+
+/* Nav pills hover */
+.nav-pill:hover {
+  background-color: #2f7a63;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Welcome pill hover */
+.welcome-pill:hover {
+  background-color: #e2f2e5;
+  transform: scale(1.03);
+}
+

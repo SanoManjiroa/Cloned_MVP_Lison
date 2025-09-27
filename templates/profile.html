@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-left">
+                <button class="nav-btn"><span class="checkmark">✓</span> Your Account</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> Writers & poets</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> Books</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> Events</button>
+            </div>
+
+            <div class="header-center">
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search" class="search-input">
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="nav-btn"><span class="checkmark">✓</span> Posts</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> Projects</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> What happened</button>
+                <button class="nav-btn"><span class="checkmark">✓</span> Main Page</button>
+            </div>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+
+            <button class="post-btn" onclick='window.location.href="{% url "post_make" %}"'>Post</button>
+            <div class="profile-image">
+                <img src="{% static 'images/profile.png' %}"
+                     alt="Profile" class="profile-photo">
+            </div>
+            <button class="profile-name">
+                <span class="name">Aykiz</span> <span class="role">Reader</span>
+            </button>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="cards-section">
+            <div class="card">
+                <div class="card-content"><div class="card-divider"></div></div>
+                <button class="card-label"><em>Saved</em></button>
+            </div>
+            <div class="card">
+                <div class="card-content"><div class="card-divider"></div></div>
+                <button class="card-label"><em>My participation</em></button>
+            </div>
+            <div class="card">
+                <div class="card-content"><div class="card-divider"></div></div>
+                <button class="card-label"><em>Notification</em></button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
