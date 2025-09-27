@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'MVP_Lison.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mvp',                # database name
-        'USER': 'root',                # username
-        'PASSWORD': 'Hiragana2005*',        # password
-        'HOST': 'localhost',                   # or IP if remote server
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
 
