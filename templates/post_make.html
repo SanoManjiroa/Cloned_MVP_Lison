@@ -6,13 +6,30 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Aykiz — Dashboard</title>
 
-  <!-- Handwritten-ish font similar to your Figma -->
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="{% static 'css/post_make.css' %}">
+  <style>
+    .color-btn {
+      margin-left: 10px;
+      padding: 6px 14px;
+      background-color: #2f7a63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+    .color-btn:hover {
+      background-color: #256d58;
+    }
+    .color-picker {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <!-- Top header / navbar -->
+  <!-- ✅ FULL HEADER RESTORED -->
   <header class="topbar">
     <div class="topbar-inner">
       <nav class="nav-left">
@@ -35,14 +52,13 @@
     </div>
   </header>
 
-  <!-- Main framed container -->
   <main class="frame">
     <div class="frame-inner">
       <!-- left column: profile -->
       <aside class="col-left">
         <div class="profile">
-          <img class="profile-img" src="{% static 'images/profile.png' %}" alt="Aykiz">
-          <div class="profile-name">Aykiz</div>
+          <img class="profile-img" src="{% static 'images/profile.png' %}" alt="Aykiz" id="profile-image">
+          <div class="profile-name" id="profile-name">Aykiz</div>
         </div>
       </aside>
 
@@ -50,29 +66,45 @@
       <section class="col-center">
         <div class="welcome-pill">Welcome Aykiz</div>
 
-        <!-- title row: input + post button -->
-        <div class="title-row" style="padding-left:80px;">
-          <input class="title-input" placeholder="Put title here" />
-          <button class="post-small" type="button" style="margin-left:20px;">Post</button>
-        </div>
+        <!-- ✅ FORM START -->
+        <form method="POST" action="{% url 'post_make' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <!-- title row -->
+          <div class="title-row" style="padding-left:80px;">
+            <input class="title-input" name="post_title" placeholder="Put title here" />
 
-        <!-- big content box with leaf icon -->
-        <div class="content-wrap">
-          <!-- leaf svg to emulate the icon in your Figma -->
-          <svg class="leaf-icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
-            <path fill="none" stroke="#2f7a63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
-              d="M2 20c4-6 10-10 20-12-2 10-8 14-20 12z" />
-          </svg>
+            <!-- ✅ New color button -->
+            <button type="button" class="color-btn" onclick="document.getElementById('colorInput').click();">
+              🎨 Choose Color
+            </button>
+            <input type="color" id="colorInput" class="color-picker" name="colorProfilePost" value="#2f7a63">
+            <button type="button" class="color-btn" onclick="document.getElementById('profileInput').click();">
+                📷 Upload Image
+              </button>
+              <input type="file" id="profileInput" name="Profile" accept="image/*" style="display:none;">
 
-          <textarea class="content-box" placeholder="Type content here"></textarea>
-        </div>
+          </div>
 
-        <!-- action row (post left + submit right) -->
-        <div class="action-row">
-          <button class="post-small">Post</button>
-          <div class="spacer"></div>
-          <button class="submit-btn">Connect us</button>
-        </div>
+          <!-- content box -->
+          <div class="content-wrap">
+            <svg class="leaf-icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
+              <path fill="none" stroke="#2f7a63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                d="M2 20c4-6 10-10 20-12-2 10-8 14-20 12z" />
+            </svg>
+            <textarea class="content-box" name="post_content" placeholder="Type content here"></textarea>
+          </div>
+
+          <!-- ✅ Hidden fields for username + profile -->
+          <input type="hidden" name="username" id="usernameField">
+          <input type="hidden" name="Profile" id="profileField">
+
+          <div class="action-row">
+            <button class="post-small" type="submit">Post</button>
+            <div class="spacer"></div>
+            <button class="submit-btn" type="button">Connect us</button>
+          </div>
+        </form>
+        <!-- ✅ FORM END -->
       </section>
 
       <!-- right column: contact -->
@@ -87,5 +119,13 @@
       </aside>
     </div>
   </main>
+
+  <script>
+    // Before form submit, fill hidden fields
+    document.querySelector("form").addEventListener("submit", function() {
+      document.getElementById("usernameField").value = document.getElementById("profile-name").innerText;
+      document.getElementById("profileField").value = document.getElementById("profile-image").getAttribute("src");
+    });
+  </script>
 </body>
 </html>

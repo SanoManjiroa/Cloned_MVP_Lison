@@ -238,3 +238,7 @@ textarea:focus {
   transform: scale(1.03);
 }
 
+/* Small styling for file button, same as color button */
+.color-btn + .color-btn {
+  margin-left: 10px;
+}

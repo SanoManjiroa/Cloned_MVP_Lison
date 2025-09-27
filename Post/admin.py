@@ -33,3 +33,5 @@ class PostsPostPageAdmin(admin.ModelAdmin):
             )
         return "-"
     color_preview.short_description = "Color"
+
+
