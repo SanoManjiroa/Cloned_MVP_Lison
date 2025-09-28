@@ -3,8 +3,6 @@ from django import forms
 from django.utils.html import format_html
 from .models import PostsPostPage
 
-
-# Admin formasi (rang tanlagich uchun)
 class PostsPostPageForm(forms.ModelForm):
     class Meta:
         model = PostsPostPage
@@ -13,15 +11,14 @@ class PostsPostPageForm(forms.ModelForm):
             'colorProfilePost': forms.TextInput(attrs={'type': 'color'}),
         }
 
-
 @admin.register(PostsPostPage)
 class PostsPostPageAdmin(admin.ModelAdmin):
     form = PostsPostPageForm
     list_display = ("username", "account_mode", "profile_preview", "color_preview")
 
     def profile_preview(self, obj):
-        if obj.Profile:
-            return format_html('<img src="{}" width="50" height="50" />', obj.Profile.url)
+        if obj.Profile_url:
+            return format_html('<img src="{}" width="50" height="50" />', obj.Profile_url)
         return "-"
     profile_preview.short_description = "Profile Image"
 
@@ -33,5 +30,3 @@ class PostsPostPageAdmin(admin.ModelAdmin):
             )
         return "-"
     color_preview.short_description = "Color"
-
-

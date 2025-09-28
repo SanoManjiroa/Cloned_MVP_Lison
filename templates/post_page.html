@@ -129,11 +129,11 @@
                     <span class="role-tag">{{post.account_mode.capitalize}}</span>
                 </div>
                 <div class="profile-image">
-                    {% if post.Profile %}
-                        <img src="{{ post.Profile.url }}" alt="{{ post.username }}" style="border: 4px solid {{ post.colorProfilePost }};">
-                    {% else %}
-                        <img src="{% static 'images/sixth.png' %}" alt="Default">
-                    {% endif %}
+                    {% if post.Profile_url %}
+                            <img src="{{ post.Profile_url }}" alt="{{ post.username }}" style="border: 4px solid {{ post.colorProfilePost }};">
+                        {% else %}
+                            <img src="{% static 'images/sixth.png' %}" alt="Default">
+                        {% endif %}
                 </div>
                 <h3 class="profile-name kosem"  style="color:{{ post.colorProfilePost }};">{{post.username}}</h3>
                 <p class="profile-quote">{{post.post_title}}</p>
