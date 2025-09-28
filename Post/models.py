@@ -11,8 +11,4 @@ class PostsPostPage(models.Model):
     post_title = models.CharField(max_length=100, default="Untitled")
     post_content = models.TextField()
     colorProfilePost = models.CharField(max_length=7, default="#FFFFFF")
-    # Change this to URLField for ImgBB storage
-    Profile_url = models.URLField(blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.username} — {self.post_title}"
+    Profile_url = models.URLField(blank=True, null=True)  # ✅ store ImgBB URL

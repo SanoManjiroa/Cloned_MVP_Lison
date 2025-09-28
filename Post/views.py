@@ -1,7 +1,6 @@
-import base64
-import requests
 from django.shortcuts import render, redirect
 from .models import PostsPostPage
+import requests
 from django.conf import settings
 
 def post(request):
@@ -14,21 +13,21 @@ def post_make(request):
         content = request.POST.get("post_content")
         username = request.POST.get("username") or "Anonymous"
         color = request.POST.get("colorProfilePost") or "#FFFFFF"
-        profile_img = request.FILES.get("Profile")  # uploaded file
+        profile_img = request.FILES.get("Profile")
 
         profile_url = None
-        if profile_img:
-            # convert image to base64
-            img_data = base64.b64encode(profile_img.read())
-            response = requests.post(
-                "https://api.imgbb.com/1/upload",
-                data={
-                    "key": settings.IMGBB_API_KEY,
-                    "image": img_data
-                }
-            )
-            if response.status_code == 200:
+        if profile_img and getattr(settings, "IMGBB_API_KEY", None):
+            try:
+                response = requests.post(
+                    "https://api.imgbb.com/1/upload",
+                    files={"image": profile_img},
+                    data={"key": settings.IMGBB_API_KEY}
+                )
+                response.raise_for_status()
                 profile_url = response.json()["data"]["url"]
+            except Exception as e:
+                print("ImgBB upload failed:", e)
+                profile_url = None
 
         if title and content:
             PostsPostPage.objects.create(
@@ -37,7 +36,7 @@ def post_make(request):
                 post_title=title,
                 post_content=content,
                 colorProfilePost=color,
-                Profile_url=profile_url  # <-- store ImgBB URL
+                Profile_url=profile_url
             )
             return redirect("post")
 
