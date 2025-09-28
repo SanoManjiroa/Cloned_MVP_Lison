@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0609TXELY1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0609TXELY1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0609TXELY1');
+    </script>
 
-  gtag('config', 'G-0609TXELY1');
-</script>
     {% load static %}
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="be2ab659-68b0-414c-bb4e-ae9412ec2c8c" type="text/javascript" async></script>
     <meta charset="UTF-8">
@@ -21,7 +21,6 @@
 <body>
     <header class="header">
         <nav class="nav-left">
-            <!-- Added checkmarks to navigation buttons -->
             <button class="nav-btn">✓ Your Account</button>
             <button class="nav-btn">✓ Events & Projects</button>
             <button class="nav-btn">✓ Main Page</button>
@@ -29,13 +28,11 @@
         </nav>
 
         <div class="search-container">
-            <!-- Updated search placeholder and styling -->
             <input type="text" class="search-input" placeholder="Search writers and poets...">
             <div class="search-icon">🔍</div>
         </div>
 
         <nav class="nav-right">
-            <!-- Added checkmarks to navigation buttons -->
             <button class="nav-btn">✓ Posts</button>
             <button class="nav-btn">✓ Archive</button>
             <button class="nav-btn">✓ Books</button>
@@ -45,6 +42,7 @@
 
     <main class="main-content">
         <div class="cards-grid">
+            <!-- Static profile cards -->
             <div class="profile-card">
                 <div class="card-header">
                     <span class="role-tag">Poet</span>
@@ -54,7 +52,6 @@
                 </div>
                 <h3 class="profile-name lily">Lily Borny</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
-                <!-- Updated read more button styling to match name colors -->
                 <button class="read-more-btn lily-btn">read more ></button>
             </div>
 
@@ -75,7 +72,7 @@
                     <span class="role-tag">Poet</span>
                 </div>
                 <div class="profile-image">
-                    <img src=" {% static 'images/third.png' %}" alt="Sofia">
+                    <img src="{% static 'images/third.png' %}" alt="Sofia">
                 </div>
                 <h3 class="profile-name sofia">Sofia</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -87,7 +84,7 @@
                     <span class="role-tag">Writer</span>
                 </div>
                 <div class="profile-image">
-                    <img src=" {% static 'images/fourth.png' %}" alt="Maria Lauras">
+                    <img src="{% static 'images/fourth.png' %}" alt="Maria Lauras">
                 </div>
                 <h3 class="profile-name maria">Maria Lauras</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -118,27 +115,24 @@
                 <button class="read-more-btn kosem-btn">read more ></button>
             </div>
 
-            <!--  Here begins real added data -->
-            <!--  <h2>{{ post.post_title }}</h2>-->
-            <!--  <p>User: {{ post.username }}</p>-->
-            <!--  <p>Color: {{ post.colorProfilePost }}</p>-->
+            <!-- Dynamic posts from the database -->
             {% if posts %}
                 {% for post in posts %}
-            <div class="profile-card">
-                <div class="card-header">
-                    <span class="role-tag">{{post.account_mode.capitalize}}</span>
-                </div>
-                <div class="profile-image">
-                {% if post.Profile_url %}
-                    <img src="{{ post.Profile_url }}" alt="{{ post.username }}" style="border: 4px solid {{ post.colorProfilePost }};">
-                {% else %}
-                    <img src="{% static 'images/sixth.png' %}" alt="Default">
-                {% endif %}
-                </div>
-                <h3 class="profile-name kosem"  style="color:{{ post.colorProfilePost }};">{{post.username}}</h3>
-                <p class="profile-quote">{{post.post_title}}</p>
-                <button class="read-more-btn db-btn" style="border: 4px solid {{ post.colorProfilePost }}; color: {{ post.colorProfilePost }}; --dbcolor: {{post.colorProfilePost}}">read more ></button>
-            </div>
+                    <div class="profile-card">
+                        <div class="card-header">
+                            <span class="role-tag">{{ post.account_mode.capitalize }}</span>
+                        </div>
+                        <div class="profile-image">
+                            {% if post.Profile_url %}
+                                <img src="{{ post.Profile_url }}" alt="{{ post.username }}" style="border: 4px solid {{ post.colorProfilePost }};">
+                            {% else %}
+                                <img src="{% static 'images/sixth.png' %}" alt="Default">
+                            {% endif %}
+                        </div>
+                        <h3 class="profile-name">{{ post.username }}</h3>
+                        <p class="profile-quote">{{ post.post_title }}</p>
+                        <button class="read-more-btn">read more ></button>
+                    </div>
                 {% endfor %}
             {% endif %}
 
