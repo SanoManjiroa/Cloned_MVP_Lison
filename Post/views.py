@@ -5,7 +5,7 @@ from django.conf import settings
 
 def post(request):
     posts = PostsPostPage.objects.all()
-    return render(request, "post_page.html", {"posts": posts})
+    return render(request, 'post_page.html', {'posts': posts})
 
 def post_make(request):
     if request.method == "POST":
