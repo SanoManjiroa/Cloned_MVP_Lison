@@ -24,6 +24,7 @@ body {
   align-items: center;
   margin-bottom: 40px;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .header-left, .header-right {
@@ -140,6 +141,7 @@ body {
   justify-content: center;
   gap: 60px;
   margin-top: 40px;
+  flex-wrap: wrap;
 }
 
 .card-content {
@@ -171,6 +173,7 @@ body {
   font-style: italic;
   font-weight: bold;
 }
+
 /* Reusable button hover animation */
 .nav-btn,
 .post-btn,
@@ -196,4 +199,61 @@ body {
 .card-content:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .cards-section {
+    gap: 40px;
+  }
+  .card-content {
+    width: 230px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-center {
+    justify-content: flex-start;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+  .profile-name {
+    font-size: 16px;
+    padding: 6px 18px;
+  }
+  .post-btn {
+    right: 20px;
+    top: 0;
+    padding: 6px 14px;
+  }
+  .card-content {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .nav-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .search-container {
+    max-width: 100%;
+  }
+  .cards-section {
+    gap: 20px;
+  }
 }

@@ -1,8 +1,8 @@
 :root{
-  --bg: #6c9b7f;             /* page background (main green) */
-  --panel: #dff6e6;          /* light mint fill inside boxes */
-  --stroke: #234d39;         /* dark border stroke (softer) */
-  --pill: #e9f8ea;           /* nav pills bg */
+  --bg: #6c9b7f;
+  --panel: #dff6e6;
+  --stroke: #234d39;
+  --pill: #e9f8ea;
   --muted-text: #1f4f3f;
   --hand: "Patrick Hand", "Segoe UI", "Inter", system-ui, sans-serif;
 }
@@ -20,7 +20,7 @@ body{
 /* Top header */
 .topbar{
   padding: 14px 18px;
-  background: #7fa98e;   /* softer green header closer to original */
+  background: #7fa98e;
 }
 .topbar-inner{
   max-width:1200px;
@@ -28,11 +28,13 @@ body{
   display:flex;
   gap:16px;
   align-items:center;
+  flex-wrap: wrap;
 }
 .nav-left, .nav-right {
   display:flex;
   gap:10px;
   align-items:center;
+  flex-wrap: wrap;
 }
 .nav-pill{
   background: var(--pill);
@@ -42,6 +44,7 @@ body{
   cursor:pointer;
   font-weight:600;
   font-size:14px;
+  transition: 0.25s ease;
 }
 
 /* central search */
@@ -58,14 +61,12 @@ body{
   font-size:15px;
 }
 
-/* main container (no big border) */
+/* main container */
 .frame{
   max-width: 1180px;
   margin:24px auto;
   padding:24px;
 }
-
-/* grid columns: left / center / right */
 .frame-inner{
   display:grid;
   grid-template-columns: 180px 1fr 220px;
@@ -97,8 +98,6 @@ body{
 
 /* Center column (form) */
 .col-center{padding-top:6px}
-
-/* Welcome pill */
 .welcome-pill{
   width:70%;
   margin:12px auto 18px auto;
@@ -112,8 +111,6 @@ body{
   font-family: var(--hand);
   font-size:18px;
 }
-
-/* Title row: input only */
 .title-row{
   display:flex;
   justify-content:center;
@@ -129,8 +126,6 @@ body{
   font-size:16px;
   outline:none;
 }
-
-/* content area */
 .content-wrap{
   margin:28px auto 0;
   width:92%;
@@ -146,7 +141,7 @@ body{
   width:100%;
   height:280px;
   border-radius:28px;
-  padding:48px 24px 24px 72px; /* leave room for leaf icon */
+  padding:48px 24px 24px 72px;
   background: var(--panel);
   border:2px solid var(--stroke);
   resize:none;
@@ -155,8 +150,6 @@ body{
   line-height:1.6;
   font-family: Inter, system-ui, -apple-system;
 }
-
-/* action row */
 .action-row{
   width:92%;
   margin:20px auto;
@@ -185,7 +178,7 @@ body{
   font-family: var(--hand);
 }
 
-/* Right column (contact) */
+/* Right column */
 .col-right{padding-top:6px}
 .contact{
   text-align:left;
@@ -201,44 +194,36 @@ body{
 }
 .contact p{margin:6px 0}
 
-/* Smooth transition for all interactive elements */
-button,
-input,
-textarea {
-  transition: all 0.25s ease-in-out;
+/* Hover & focus transitions */
+button, input, textarea {transition: all 0.25s ease-in-out;}
+button:hover {background-color:#2f7a63;color:#fff;transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.2);}
+input:focus, textarea:focus {outline:none;border-color:#2f7a63;box-shadow:0 0 6px rgba(47,122,99,0.6);transform:scale(1.01);}
+.nav-pill:hover {background-color:#2f7a63;color:#fff;transform:scale(1.05);}
+.welcome-pill:hover {background-color:#e2f2e5;transform:scale(1.03);}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .frame-inner {grid-template-columns: 150px 1fr 150px; gap:12px;}
+  .profile-img{width:100px;height:100px;}
+  .welcome-pill{width:80%;}
+  .title-input{width:80%;}
 }
 
-/* Buttons: hover effect */
-button:hover {
-  background-color: #2f7a63;   /* darker green */
-  color: #fff;                 /* text contrast */
-  transform: translateY(-2px); /* subtle lift */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+@media (max-width: 768px) {
+  .frame-inner {grid-template-columns: 1fr; gap:20px;}
+  .col-left, .col-center, .col-right {padding-top:0;}
+  .profile-img{width:90px;height:90px;}
+  .welcome-pill{width:90%;}
+  .title-input{width:95%;}
+  .content-box{padding:36px 16px 16px 56px;height:220px;}
+  .action-row{flex-direction:column;align-items:stretch;}
+  .post-small, .submit-btn{width:100%;min-width:auto;}
 }
 
-/* Inputs: glow on focus */
-input:focus,
-textarea:focus {
-  outline: none;
-  border-color: #2f7a63;
-  box-shadow: 0 0 6px rgba(47,122,99,0.6);
-  transform: scale(1.01);
-}
-
-/* Nav pills hover */
-.nav-pill:hover {
-  background-color: #2f7a63;
-  color: #fff;
-  transform: scale(1.05);
-}
-
-/* Welcome pill hover */
-.welcome-pill:hover {
-  background-color: #e2f2e5;
-  transform: scale(1.03);
-}
-
-/* Small styling for file button, same as color button */
-.color-btn + .color-btn {
-  margin-left: 10px;
+@media (max-width: 480px) {
+  .profile-img{width:80px;height:80px;}
+  .welcome-pill{height:44px;line-height:44px;font-size:16px;}
+  .title-input{height:40px;font-size:14px;}
+  .content-box{padding:32px 12px 12px 48px;height:180px;font-size:14px;}
+  .action-row{gap:10px;}
 }
