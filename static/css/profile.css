@@ -177,7 +177,7 @@ body {
   font-weight: bold;
 }
 
-/* Reusable button hover animation */
+/* Hover animations */
 .nav-btn,
 .post-btn,
 .profile-name,
@@ -194,7 +194,7 @@ body {
   background-color: #d8edd8;
 }
 
-/* Cards animation */
+/* Card hover */
 .card-content {
   transition: all 0.3s ease;
 }
@@ -204,7 +204,7 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
 
-/* ✅ Responsive adjustments */
+/* Responsive */
 @media (max-width: 1024px) {
   .cards-section {
     gap: 40px;

@@ -412,16 +412,13 @@ body {
   -ms-transform: scale(1.1);
 }
 
-.db-btn {
-    transition: all 0.2s ease;
-}
 
 .db-btn:hover {
-    background-color: var(--hover-bg); /* DB rangi ishlaydi */
-    color: black;                     /* text rangi hoverda ham qora */
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
+  color: black!important;
+  background-color: var(--dbcolor);
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
 }
 
 
