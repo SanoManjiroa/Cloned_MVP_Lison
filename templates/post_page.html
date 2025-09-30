@@ -21,10 +21,10 @@
 <body>
     <header class="header">
         <nav class="nav-left">
-            <button class="nav-btn">✓ Your Account</button>
+            <button class="nav-btn" onclick='window.location.href="{% url "profile" %}"'>✓ Your Account</button>
             <button class="nav-btn">✓ Events & Projects</button>
             <button class="nav-btn">✓ Main Page</button>
-            <button class="nav-btn">✓ Talk to us</button>
+            <button class="nav-btn">✓ Contact </button>
         </nav>
 
         <div class="search-container">
@@ -33,7 +33,7 @@
         </div>
 
         <nav class="nav-right">
-            <button class="nav-btn">✓ Posts</button>
+            <button class="nav-btn" onclick='window.location.href="{% url "post" %}"'>✓ Posts</button>
             <button class="nav-btn">✓ Archive</button>
             <button class="nav-btn">✓ Books</button>
             <button class="nav-btn">✓ Writers & Poets</button>
@@ -131,7 +131,7 @@
                         </div>
                         <h3 class="profile-name">{{ post.username }}</h3>
                         <p class="profile-quote">{{ post.post_title }}</p>
-                        <button class="read-more-btn">read more ></button>
+                        <button class="read-more-btn db-btn" style="--dbcolor: {{post.colorProfilePost}}; color:{{post.colorProfilePost}}; border-color:{{post.colorProfilePost}}; ">read more ></button>
                     </div>
                 {% endfor %}
             {% endif %}

@@ -412,10 +412,6 @@ body {
   -ms-transform: scale(1.1);
 }
 
-.db-btn {
-  color: #3b82f6;
-  border-color: #3b82f6;
-}
 
 .db-btn:hover {
   color: black!important;

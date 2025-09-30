@@ -27,7 +27,8 @@ body {
   flex-wrap: wrap;
 }
 
-.header-left, .header-right {
+.header-left,
+.header-right {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -37,6 +38,7 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
+  min-width: 200px;
 }
 
 .nav-btn {
@@ -51,6 +53,7 @@ body {
   align-items: center;
   gap: 4px;
   transition: 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -135,7 +138,7 @@ body {
   font-weight: bold;
 }
 
-/* Cards Section - Bigger */
+/* Cards Section */
 .cards-section {
   display: flex;
   justify-content: center;
@@ -201,7 +204,7 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
 
-/* Responsive adjustments */
+/* ✅ Responsive adjustments */
 @media (max-width: 1024px) {
   .cards-section {
     gap: 40px;
@@ -215,10 +218,14 @@ body {
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+  .header-left,
+  .header-right {
+    justify-content: center;
   }
   .header-center {
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
     margin: 10px 0;
   }
@@ -232,12 +239,15 @@ body {
   }
   .post-btn {
     right: 20px;
-    top: 0;
+    top: -15px;
     padding: 6px 14px;
+  }
+  .cards-section {
+    gap: 30px;
   }
   .card-content {
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     height: auto;
   }
 }
@@ -253,7 +263,18 @@ body {
   .search-container {
     max-width: 100%;
   }
+  .post-btn {
+    position: static;
+    display: block;
+    margin: 0 auto 20px;
+  }
   .cards-section {
     gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-content {
+    width: 100%;
+    max-width: 280px;
   }
 }

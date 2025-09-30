@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("Post.urls")),        # your main app
-    path('profile/', include("Profile.urls")),  # your profile app
+    path('profile/', include("Profile.urls"), name="profile"),  # your profile app
 ]
 
 # Serve media files only in development (DEBUG=True)

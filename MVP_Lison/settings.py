@@ -7,8 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-#ALLOWED_HOSTS =["*"]
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "cloned-mvp-lison.onrender.com").split(",")
+ALLOWED_HOSTS =["*"]
+#ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "cloned-mvp-lison.onrender.com").split(",")
 IMGBB_API_KEY = "8d94f68259a37bd462f974d7bcd08428"
 
 # Apps

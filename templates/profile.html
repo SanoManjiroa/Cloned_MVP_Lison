@@ -14,7 +14,7 @@
         <!-- Header Section -->
         <header class="header">
             <div class="header-left">
-                <button class="nav-btn"><span class="checkmark">✓</span> Your Account</button>
+                <button class="nav-btn"><span class="checkmark" onclick='window.location.href="{% url "profile" %}"' >✓</span> Your Account</button>
                 <button class="nav-btn"><span class="checkmark">✓</span> Writers & poets</button>
                 <button class="nav-btn"><span class="checkmark">✓</span> Books</button>
                 <button class="nav-btn"><span class="checkmark">✓</span> Events</button>
@@ -28,20 +28,20 @@
             </div>
 
             <div class="header-right">
-                <button class="nav-btn"><span class="checkmark">✓</span> Posts</button>
+                <button class="nav-btn" onclick="window.location.href='{% url 'post' %}'">
+                    <span class="checkmark">✓</span> Posts
+                </button>
                 <button class="nav-btn"><span class="checkmark">✓</span> Projects</button>
-                <button class="nav-btn"><span class="checkmark">✓</span> What happened</button>
+                <button class="nav-btn"><span class="checkmark">✓</span>Contact</button>
                 <button class="nav-btn"><span class="checkmark">✓</span> Main Page</button>
             </div>
         </header>
 
         <!-- Profile Section -->
         <section class="profile-section">
-
             <button class="post-btn" onclick='window.location.href="{% url "post_make" %}"'>Post</button>
             <div class="profile-image">
-                <img src="{% static 'images/profile.png' %}"
-                     alt="Profile" class="profile-photo">
+                <img src="{% static 'images/profile.png' %}" alt="Profile" class="profile-photo">
             </div>
             <button class="profile-name">
                 <span class="name">Aykiz</span> <span class="role">Reader</span>

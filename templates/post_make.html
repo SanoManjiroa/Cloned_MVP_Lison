@@ -19,6 +19,7 @@
       cursor: pointer;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
+      white-space: nowrap;
     }
     .color-btn:hover {
       background-color: #256d58;
@@ -29,11 +30,11 @@
   </style>
 </head>
 <body>
-  <!-- ✅ FULL HEADER RESTORED -->
+  <!-- ✅ FULL HEADER -->
   <header class="topbar">
     <div class="topbar-inner">
       <nav class="nav-left">
-        <button class="nav-pill">Your Account</button>
+        <button class="nav-pill"  onclick="window.location.href='{% url 'profile' %}'">Your Account</button>
         <button class="nav-pill">Writers &amp; Poets</button>
         <button class="nav-pill">Events</button>
         <button class="nav-pill">Books</button>
@@ -44,10 +45,10 @@
       </div>
 
       <nav class="nav-right">
-        <button class="nav-pill">Posts</button>
+        <button class="nav-pill" onclick="window.location.href='{% url 'post' %}'">Posts</button>
         <button class="nav-pill">Projects</button>
-        <button class="nav-pill">What Happened</button>
-        <button class="nav-pill">Main Page</button>
+        <button class="nav-pill">Contact</button>
+        <button class="nav-pill" >Main Page</button>
       </nav>
     </div>
   </header>
@@ -66,26 +67,20 @@
       <section class="col-center">
         <div class="welcome-pill">Welcome Aykiz</div>
 
-        <!-- ✅ FORM START -->
+        <!-- ✅ FORM -->
         <form method="POST" action="{% url 'post_make' %}" enctype="multipart/form-data">
           {% csrf_token %}
+
           <!-- title row -->
-          <div class="title-row" style="padding-left:80px;">
-            <input class="title-input" name="post_title" placeholder="Put title here" />
-
-            <!-- ✅ New color button -->
-            <button type="button" class="color-btn" onclick="document.getElementById('colorInput').click();">
-              🎨 Choose Color
-            </button>
+          <div class="title-row">
+            <input class="title-input" name="post_title" placeholder="Put title here" style="margin-left: 80px;"/>
+            <button type="button" class="color-btn" onclick="document.getElementById('colorInput').click();">🎨 Choose Color</button>
             <input type="color" id="colorInput" class="color-picker" name="colorProfilePost" value="#2f7a63">
-            <button type="button" class="color-btn" onclick="document.getElementById('profileInput').click();">
-                📷 Upload Image
-              </button>
-              <input type="file" id="profileInput" name="Profile" accept="image/*" style="display:none;">
-
+            <button type="button" class="color-btn" onclick="document.getElementById('profileInput').click();">📷 Upload Image</button>
+            <input type="file" id="profileInput" name="Profile" accept="image/*" style="display:none;">
           </div>
 
-          <!-- content box -->
+          <!-- content -->
           <div class="content-wrap">
             <svg class="leaf-icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
               <path fill="none" stroke="#2f7a63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
@@ -94,7 +89,7 @@
             <textarea class="content-box" name="post_content" placeholder="Type content here"></textarea>
           </div>
 
-          <!-- ✅ Hidden fields for username + profile -->
+          <!-- hidden fields -->
           <input type="hidden" name="username" id="usernameField">
           <input type="hidden" name="Profile" id="profileField">
 
@@ -104,10 +99,9 @@
             <button class="submit-btn" type="button">Connect us</button>
           </div>
         </form>
-        <!-- ✅ FORM END -->
       </section>
 
-      <!-- right column: contact -->
+      <!-- right column -->
       <aside class="col-right">
         <div class="contact">
           <h3>Contact</h3>
@@ -121,7 +115,6 @@
   </main>
 
   <script>
-    // Before form submit, fill hidden fields
     document.querySelector("form").addEventListener("submit", function() {
       document.getElementById("usernameField").value = document.getElementById("profile-name").innerText;
       document.getElementById("profileField").value = document.getElementById("profile-image").getAttribute("src");
