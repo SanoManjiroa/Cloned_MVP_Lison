@@ -1,3 +1,5 @@
+
+
 :root{
   /* fallback theme variables */
   --bg: #234d39;
@@ -97,5 +99,16 @@ html, body { height: 100%; background: var(--bg); color: var(--text); }
   .title-input { font-size: 14px;}
   .bottom-nav button { padding: 8px 10px; font-size: 12px; border-radius: 16px; }
   .color-btn{margin-top:30px;}
+}
 
+body {
+  background-color: #7fa98e !important;
+}
+.col-left,
+.col-right {
+  background-color: #dfeee6 !important;
+}
+
+.col-center {
+  background-color: #7fa98e !important;
 }
