@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0609TXELY1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -19,6 +18,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <button class="sidebar-close" id="sidebarClose">×</button>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="sidebar-btn" onclick='window.location.href="{% url "profile" %}"'>✓ Your Account</button>
+            <button class="sidebar-btn">✓ Events & Projects</button>
+            <button class="sidebar-btn">✓ Main Page</button>
+            <button class="sidebar-btn">✓ Contact</button>
+            <button class="sidebar-btn" onclick='window.location.href="{% url "post" %}"'>✓ Posts</button>
+            <button class="sidebar-btn">✓ Archive</button>
+            <button class="sidebar-btn">✓ Books</button>
+            <button class="sidebar-btn">✓ Writers & Poets</button>
+        </nav>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <header class="header">
         <nav class="nav-left">
             <button class="nav-btn" onclick='window.location.href="{% url "profile" %}"'>✓ Your Account</button>
@@ -48,7 +71,7 @@
                     <span class="role-tag">Poet</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/first.png' %}" alt="Lily Borny">
+                    <img src="{% static 'images/first.png' %}" alt="Lily Borny"  style="border: 4px solid #06b6d4;">
                 </div>
                 <h3 class="profile-name lily">Lily Borny</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -60,7 +83,7 @@
                     <span class="role-tag">Writer</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/second.png' %}" alt="Muharram">
+                    <img src="{% static 'images/second.png' %}" alt="Muharram" style="border: 4px solid #ec4899;">
                 </div>
                 <h3 class="profile-name muharram">Muharram</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -72,7 +95,7 @@
                     <span class="role-tag">Poet</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/third.png' %}" alt="Sofia">
+                    <img src="{% static 'images/third.png' %}" alt="Sofia" style="border: 4px solid #f97316;">
                 </div>
                 <h3 class="profile-name sofia">Sofia</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -84,7 +107,7 @@
                     <span class="role-tag">Writer</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/fourth.png' %}" alt="Maria Lauras">
+                    <img src="{% static 'images/fourth.png' %}" alt="Maria Lauras" style="border: 4px solid #a855f7;">
                 </div>
                 <h3 class="profile-name maria">Maria Lauras</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -96,7 +119,7 @@
                     <span class="role-tag">Poet</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/fifth.png' %}" alt="Veronika Neva">
+                    <img src="{% static 'images/fifth.png' %}" alt="Veronika Neva" style="border: 4px solid #f97316;">
                 </div>
                 <h3 class="profile-name veronika">Veronika Neva</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -108,7 +131,7 @@
                     <span class="role-tag">Writer</span>
                 </div>
                 <div class="profile-image">
-                    <img src="{% static 'images/sixth.png' %}" alt="Kosem Sultana">
+                    <img src="{% static 'images/sixth.png' %}" alt="Kosem Sultana" style="border: 4px solid #3b82f6;">
                 </div>
                 <h3 class="profile-name kosem">Kosem Sultana</h3>
                 <p class="profile-quote">Life is better than bad memories</p>
@@ -126,17 +149,79 @@
                             {% if post.Profile_url %}
                                 <img src="{{ post.Profile_url }}" alt="{{ post.username }}" style="border: 4px solid {{ post.colorProfilePost }};">
                             {% else %}
-                                <img src="{% static 'images/sixth.png' %}" alt="Default">
+                                <img src="{% static 'images/sixth.png' %}" alt="Default" style="border: 4px solid blue;">
                             {% endif %}
                         </div>
-                        <h3 class="profile-name">{{ post.username }}</h3>
+                        <h3 class="profile-name" style="color: {{ post.colorProfilePost }};">{{ post.username }}</h3>
                         <p class="profile-quote">{{ post.post_title }}</p>
                         <button class="read-more-btn db-btn" style="--dbcolor: {{post.colorProfilePost}}; color:{{post.colorProfilePost}}; border-color:{{post.colorProfilePost}}; ">read more ></button>
                     </div>
                 {% endfor %}
             {% endif %}
-
         </div>
     </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-tab active" onclick='window.location.href="{% url "profile" %}"'>
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">Account</span>
+        </button>
+        <button class="nav-tab" onclick='window.location.href="{% url "post" %}"'>
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Posts</span>
+        </button>
+        <button class="nav-tab">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Books</span>
+        </button>
+        <button class="nav-tab">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-text">Search</span>
+        </button>
+        <button class="nav-tab" id="bottomMenuBtn">
+            <span class="nav-icon">☰</span>
+            <span class="nav-text">Menu</span>
+        </button>
+    </nav>
+
+    <script>
+        // Mobile sidebar functionality
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const bottomMenuBtn = document.getElementById("bottomMenuBtn");
+        const sidebar = document.getElementById("sidebar");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const sidebarClose = document.getElementById("sidebarClose");
+
+        function toggleSidebar() {
+            sidebar.classList.toggle("active");
+            sidebarOverlay.classList.toggle("active");
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+        }
+
+        mobileMenuBtn.addEventListener("click", toggleSidebar);
+        bottomMenuBtn.addEventListener("click", toggleSidebar);
+        sidebarClose.addEventListener("click", closeSidebar);
+        sidebarOverlay.addEventListener("click", closeSidebar);
+
+        // Close sidebar when clicking on sidebar buttons
+        const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+        sidebarBtns.forEach(btn => {
+            btn.addEventListener('click', closeSidebar);
+        });
+
+        // Bottom nav active state
+        const navTabs = document.querySelectorAll('.nav-tab');
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                navTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

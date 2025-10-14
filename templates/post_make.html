@@ -8,8 +8,142 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/post_make.css' %}">
+
   <style>
-    .color-btn {
+    /* ✅ Left Sidebar (Mobile Only) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100%;
+      background: #7fa98e;
+      border-right: 3px solid #234d39;
+      box-shadow: 4px 0 10px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 12px;
+      transition: left 0.3s ease;
+      z-index: 200;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .sidebar a {
+      text-decoration: none;
+      background: var(--pill);
+      border: 2px solid var(--stroke);
+      border-radius: 20px;
+      color: var(--muted-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px;
+      text-align: center;
+    }
+    .sidebar a:hover {
+      background: #9fd0b4;
+    }
+
+    /* Dark overlay when sidebar open */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 150;
+    }
+    .overlay.active {
+      display: block;
+    }
+
+    /* ✅ Mobile burger button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ✅ Bottom Navigation (Original) */
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #7fa98e;
+      border-top: 2px solid #234d39;
+      justify-content: space-around;
+      padding: 8px 0;
+      z-index: 100;
+    }
+    .bottom-nav button {
+      background: var(--pill);
+      border: 2px solid var(--stroke);
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted-text);
+    }
+
+    /* ✅ Responsive behavior */
+    @media (max-width: 1024px) {
+      .nav-left,
+      .nav-right,
+      .search-wrap {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 18px;
+        top: 16px;
+      }
+      .bottom-nav {
+        display: flex;
+      }
+      body {
+        padding-bottom: 60px;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .bottom-nav,
+      .menu-toggle,
+      .sidebar,
+      .overlay {
+        display: none !important;
+      }
+    }
+
+    /* ✅ Your existing title, color, and form styles remain untouched */
+    .title-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #234d39;
+      border-radius: 20px;
+      background-color: #f8f9fa;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #234d39;
+      box-sizing: border-box;
+      height: 50px;
+    }
+    .title-input::placeholder {
+      color: #7fa98e;
+      font-weight: 400;
+    }
+    .title-input:focus {
+      outline: none;
+      border-color: #2f7a63;
+      box-shadow: 0 0 0 3px rgba(47, 122, 99, 0.2);
+    }
+    .color-btn, .color-btn2 {
       margin-left: 10px;
       padding: 6px 14px;
       background-color: #2f7a63;
@@ -21,21 +155,56 @@
       font-size: 14px;
       white-space: nowrap;
     }
-    .color-btn:hover {
+    .color-btn:hover, .color-btn2:hover {
       background-color: #256d58;
     }
-    .color-picker {
-      display: none;
-    }
+    .color-picker { display: none; }
+
+    @media (max-width: 480px) {
+    .col-right{ display: none;} }
+
+    @media (max-width: 1024px) {
+  main.frame {
+    padding-bottom: 70px; /* enough space above bottom nav */
+  }
+}
+/* ✅ Fix layout between tablet and small desktop (e.g. 768px–1024px) */
+@media (max-width: 936px) {
+  .title-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .title-row .title {
+    flex: 1 1 100%;
+  }
+
+  .title-input {
+    width: 100%;
+  }
+
+  .color-btn,
+  .color-btn2 {
+    flex: 1 1 auto;
+    margin-left: 0;
+    min-width: 140px;
+  }
+}
+
   </style>
 </head>
+
 <body>
-  <!-- ✅ FULL HEADER -->
+  <!-- ✅ HEADER -->
   <header class="topbar">
     <div class="topbar-inner">
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
       <nav class="nav-left">
-        <button class="nav-pill"  onclick="window.location.href='{% url 'profile' %}'">Your Account</button>
-        <button class="nav-pill">Writers &amp; Poets</button>
+        <button class="nav-pill" onclick="window.location.href='{% url 'profile' %}'">Your Account</button>
+        <button class="nav-pill">Writers & Poets</button>
         <button class="nav-pill">Events</button>
         <button class="nav-pill">Books</button>
       </nav>
@@ -48,14 +217,25 @@
         <button class="nav-pill" onclick="window.location.href='{% url 'post' %}'">Posts</button>
         <button class="nav-pill">Projects</button>
         <button class="nav-pill">Contact</button>
-        <button class="nav-pill" >Main Page</button>
+        <button class="nav-pill">Main Page</button>
       </nav>
     </div>
   </header>
 
+  <!-- ✅ LEFT SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <a href="{% url 'profile' %}">Your Account</a>
+    <a href="{% url 'post' %}">Posts</a>
+    <a href="#">Books</a>
+    <a href="#">Events</a>
+    <a href="#">Main Page</a>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ✅ MAIN CONTENT -->
   <main class="frame">
     <div class="frame-inner">
-      <!-- left column: profile -->
       <aside class="col-left">
         <div class="profile">
           <img class="profile-img" src="{% static 'images/profile.png' %}" alt="Aykiz" id="profile-image">
@@ -63,24 +243,20 @@
         </div>
       </aside>
 
-      <!-- center column: form -->
       <section class="col-center">
         <div class="welcome-pill">Welcome Aykiz</div>
-
-        <!-- ✅ FORM -->
         <form method="POST" action="{% url 'post_make' %}" enctype="multipart/form-data">
           {% csrf_token %}
-
-          <!-- title row -->
           <div class="title-row">
-            <input class="title-input" name="post_title" placeholder="Put title here" style="margin-left: 80px;"/>
+            <div class="title">
+              <input class="title-input" name="post_title" placeholder="Put title here" />
+            </div>
             <button type="button" class="color-btn" onclick="document.getElementById('colorInput').click();">🎨 Choose Color</button>
             <input type="color" id="colorInput" class="color-picker" name="colorProfilePost" value="#2f7a63">
-            <button type="button" class="color-btn" onclick="document.getElementById('profileInput').click();">📷 Upload Image</button>
+            <button type="button" class="color-btn2" onclick="document.getElementById('profileInput').click();">📷 Upload Image</button>
             <input type="file" id="profileInput" name="Profile" accept="image/*" style="display:none;">
           </div>
 
-          <!-- content -->
           <div class="content-wrap">
             <svg class="leaf-icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true">
               <path fill="none" stroke="#2f7a63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
@@ -89,7 +265,6 @@
             <textarea class="content-box" name="post_content" placeholder="Type content here"></textarea>
           </div>
 
-          <!-- hidden fields -->
           <input type="hidden" name="username" id="usernameField">
           <input type="hidden" name="Profile" id="profileField">
 
@@ -101,7 +276,6 @@
         </form>
       </section>
 
-      <!-- right column -->
       <aside class="col-right">
         <div class="contact">
           <h3>Contact</h3>
@@ -114,10 +288,33 @@
     </div>
   </main>
 
+  <!-- ✅ Bottom Navigation (Original) -->
+  <div class="bottom-nav">
+    <button onclick="window.location.href='{% url 'post' %}'">Posts</button>
+    <button onclick="window.location.href='/'">Dashboard</button>
+    <button onclick="window.location.href='{% url 'profile' %}'">Profile</button>
+  </div>
+
+  <!-- ✅ JS -->
   <script>
-    document.querySelector("form").addEventListener("submit", function() {
+    // Fill hidden form fields
+    document.querySelector("form").addEventListener("submit", function () {
       document.getElementById("usernameField").value = document.getElementById("profile-name").innerText;
       document.getElementById("profileField").value = document.getElementById("profile-image").getAttribute("src");
+    });
+
+    // Sidebar toggle
+    const toggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    toggle.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+      overlay.classList.toggle("active");
+    });
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
     });
   </script>
 </body>

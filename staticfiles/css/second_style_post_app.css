@@ -10,17 +10,188 @@
 }
 
 body {
-  font-family: "Kalam", cursive, Arial, sans-serif; /* Added fallback fonts */
+  font-family: "Kalam", cursive, Arial, sans-serif;
   font-weight: bold;
   background-color: #4a4a4a;
   color: white;
   min-height: 100vh;
-  /* Added overflow-x hidden to prevent horizontal scrolling */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* NEW: Mobile Menu Button - Hidden on desktop */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+/* NEW: Sidebar - Hidden by default */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  height: 100%;
+  background: #4a4a4a;
+  background: linear-gradient(to bottom, #4a4a4a, #525252);
+  z-index: 1001;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid #666;
+  background: #3a3a3a;
+}
+
+.sidebar-header h3 {
+  color: white;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.sidebar-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.sidebar-close:hover {
+  background: #666;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+}
+
+.sidebar-btn {
+  background-color: #e5e7eb;
+  color: black;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Kalam", cursive, Arial, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-btn:hover {
+  background-color: #d1d5db;
+  transform: translateX(5px);
+}
+
+/* NEW: Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* NEW: Bottom Navigation */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #4a4a4a;
+  background: linear-gradient(to right, #4a4a4a, #525252);
+  padding: 10px 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.nav-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-tab.active {
+  color: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+.nav-tab.active .nav-icon {
+  transform: scale(1.2);
+}
+
+.nav-icon {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-text {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Kalam", cursive;
+}
+
+.nav-tab:hover {
+  color: #d1d5db;
+}
+
+/* ORIGINAL HEADER STYLES (UNCHANGED) */
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -33,16 +204,14 @@ body {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  /* Reduced padding and made responsive */
   padding: 24px 16px;
   gap: 16px;
-  background: #4a4a4a; /* Fallback for older browsers */
+  background: #4a4a4a;
   background: -webkit-linear-gradient(left, #4a4a4a, #525252);
   background: -o-linear-gradient(left, #4a4a4a, #525252);
   background: linear-gradient(to right, #4a4a4a, #525252);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Added width constraint */
   width: 100%;
   box-sizing: border-box;
 }
@@ -57,7 +226,6 @@ body {
   gap: 16px;
 }
 
-/* Updated navigation button styling to match design */
 .nav-btn {
   background-color: #e5e7eb;
   color: black;
@@ -90,11 +258,9 @@ body {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   max-width: 600px;
-  /* Reduced margin to prevent overflow */
   margin: 0 16px;
 }
 
-/* Updated search input to match navigation button color */
 .search-input {
   width: 100%;
   padding: 16px 20px 16px 56px;
@@ -155,39 +321,22 @@ body {
 }
 
 .main-content {
-  /* Reduced padding and made responsive */
   padding: 40px 16px 80px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Added fallback for browsers that don't support CSS Grid */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   max-width: 1400px;
   margin: 0 auto;
-  /* Added width constraint and padding */
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
 }
 
-/* Fallback for older browsers without grid support */
-.no-grid .cards-grid {
-  display: block;
-  text-align: center;
-}
-
-.no-grid .profile-card {
-  display: inline-block;
-  width: 30%;
-  margin: 16px 1.5%;
-  vertical-align: top;
-}
-
-/* Updated profile cards to have black background and better styling */
 .profile-card {
   background-color: black;
   border: 2px solid white;
@@ -236,7 +385,6 @@ body {
   margin: 40px 0 32px 0;
 }
 
-/* Made profile images bigger and added colored rings */
 .profile-image img {
   width: 128px;
   height: 128px;
@@ -280,7 +428,6 @@ body {
   font-style: italic;
 }
 
-/* Updated name colors to match exact design */
 .profile-name.lily {
   color: #06b6d4;
 }
@@ -314,7 +461,6 @@ body {
   line-height: 1.5;
 }
 
-/* Updated read more buttons to match name colors and positioned lower */
 .read-more-btn {
   background-color: transparent;
   border: 2px solid;
@@ -412,7 +558,6 @@ body {
   -ms-transform: scale(1.1);
 }
 
-
 .db-btn:hover {
   color: black!important;
   background-color: var(--dbcolor);
@@ -421,36 +566,11 @@ body {
   -ms-transform: scale(1.1);
 }
 
-
-/* Responsive Design */
+/* NEW RESPONSIVE MEDIA QUERIES */
 @media (max-width: 1024px) {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    /* Reduced padding for smaller screens */
-    padding: 0 8px;
-  }
-
-  .header {
-    flex-wrap: wrap;
-    gap: 12px;
-    /* Further reduced padding */
-    padding: 20px 12px;
-  }
-
-  .nav-left,
-  .nav-right {
-    gap: 8px;
-  }
-
-  .nav-btn {
-    padding: 8px 16px;
-    font-size: 12px;
-  }
-
-  .search-container {
-    /* Reduced margin further */
-    margin: 0 8px;
   }
 }
 
@@ -458,36 +578,65 @@ body {
   .cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    /* Minimal padding for mobile */
-    padding: 0 4px;
-  }
-
-  .header {
-    flex-direction: column;
-    /* Minimal padding for mobile */
-    padding: 16px 8px;
   }
 
   .nav-left,
   .nav-right {
-    flex-wrap: wrap;
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .bottom-nav {
+    display: flex;
+  }
+
+  .header {
     justify-content: center;
+    padding: 15px 16px 70px;
   }
 
   .search-container {
-    order: -1;
-    width: 100%;
+    max-width: 400px;
     margin: 0;
-    max-width: none;
   }
 
   .main-content {
-    /* Reduced padding for mobile */
-    padding: 24px 8px;
+    padding: 30px 16px 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-btn {
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .sidebar {
+    width: 260px;
+  }
+
+  .search-input {
+    padding: 14px 20px 14px 50px;
+    font-size: 14px;
+  }
+
+  .search-icon {
+    left: 18px;
+    font-size: 16px;
+  }
+
+  .cards-grid {
+    gap: 15px;
   }
 
   .profile-card {
-    padding: 24px;
+    padding: 20px;
     min-height: 380px;
   }
 
@@ -496,58 +645,15 @@ body {
     height: 100px;
   }
 
-  .profile-name {
-    font-size: 20px;
-  }
-}
-
-/* Added additional mobile constraints */
-@media (max-width: 480px) {
-  .header {
-    padding: 12px 4px;
+  .bottom-nav {
+    padding: 8px 0;
   }
 
-  .main-content {
-    padding: 20px 4px;
-  }
-
-  .cards-grid {
-    padding: 0 2px;
-    gap: 16px;
-  }
-
-  .nav-btn {
-    padding: 6px 12px;
+  .nav-text {
     font-size: 11px;
   }
-}
 
-/* Added Internet Explorer specific fixes */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .cards-grid {
-    display: -ms-grid;
-    -ms-grid-columns: 1fr 32px 1fr 32px 1fr;
-  }
-
-  .profile-card:nth-child(1) {
-    -ms-grid-column: 1;
-  }
-  .profile-card:nth-child(2) {
-    -ms-grid-column: 3;
-  }
-  .profile-card:nth-child(3) {
-    -ms-grid-column: 5;
-  }
-  .profile-card:nth-child(4) {
-    -ms-grid-column: 1;
-    -ms-grid-row: 2;
-  }
-  .profile-card:nth-child(5) {
-    -ms-grid-column: 3;
-    -ms-grid-row: 2;
-  }
-  .profile-card:nth-child(6) {
-    -ms-grid-column: 5;
-    -ms-grid-row: 2;
+  .nav-icon {
+    font-size: 18px;
   }
 }
