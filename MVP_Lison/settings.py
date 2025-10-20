@@ -54,7 +54,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MVP_Lison.wsgi.application'
 
-#Database
+# #Database
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
