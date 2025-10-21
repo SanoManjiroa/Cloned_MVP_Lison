@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   {% load static %}
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Aykiz — Dashboard</title>
@@ -567,6 +570,26 @@
         display: none !important;
       }
     }
+    /* Add to your existing CSS */
+@media (max-width: 1024px) {
+  .frame {
+    padding-bottom: 80px !important; /* Increase space above bottom nav */
+  }
+
+  .action-row {
+    margin-bottom: 20px !important; /* Extra space before bottom nav */
+  }
+}
+
+@media (max-width: 480px) {
+  .frame {
+    padding-bottom: 100px !important; /* Even more space on mobile */
+  }
+
+  .action-row {
+    margin-bottom: 30px !important;
+  }
+}
 
   </style>
 </head>
